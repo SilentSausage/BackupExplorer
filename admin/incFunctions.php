@@ -2333,9 +2333,9 @@
 		 */
 		return [
 			'Clients' => [
-				'endpoints' => 'SELECT COUNT FROM endpoints WHERE clientid = id;',
-				'jobs' => 'SELECT COUNT FROM Jobs WHERE client = id;',
-				'destinations' => 'SELECT COUNT FROM Destinations WHERE client = id;',
+				'endpoints' => 'SELECT COUNT(id) FROM endpoints WHERE clientid = id; ',
+				'jobs' => 'SELECT COUNT(id) FROM jobs WHERE clientid = id; ',
+				'destinations' => 'SELECT COUNT(id) FROM destinations WHERE clientid = id; ',
 			],
 			'Endpoints' => [
 			],
@@ -2488,12 +2488,12 @@
 				'software' => 'SELECT `Software`.`id`, `Software`.`name` FROM `Software` ORDER BY 2',
 				'endpoint' => 'SELECT `Endpoints`.`id`, `Endpoints`.`hostname` FROM `Endpoints` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Endpoints`.`clientid` ORDER BY 2',
 				'method' => 'SELECT `Methods`.`id`, IF(CHAR_LENGTH(`Methods`.`name`) || CHAR_LENGTH(`Methods`.`software`), CONCAT_WS(\'\', `Methods`.`name`, \' - \', IF(    CHAR_LENGTH(`Software1`.`name`), CONCAT_WS(\'\',   `Software1`.`name`), \'\')), \'\') FROM `Methods` LEFT JOIN `Software` as Software1 ON `Software1`.`id`=`Methods`.`software` ORDER BY 2',
-				'destination' => 'SELECT `Destinations`.`id`, IF(CHAR_LENGTH(`Destinations`.`type`) || CHAR_LENGTH(`Destinations`.`id`), CONCAT_WS(\'\', `Destinations`.`type`, \'- \', `Destinations`.`id`), \'\') FROM `Destinations` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Destinations`.`client` ORDER BY 2',
+				'destination' => 'SELECT `Destinations`.`id`, IF(CHAR_LENGTH(`Destinations`.`hostname`) || CHAR_LENGTH(`Destinations`.`type`), CONCAT_WS(\'\', `Destinations`.`hostname`, \'- \', `Destinations`.`type`), \'\') FROM `Destinations` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Destinations`.`client` ORDER BY 2',
 			],
 			'Log' => [
 				'client' => 'SELECT `Clients`.`id`, `Clients`.`name` FROM `Clients` ORDER BY 2',
 				'endpoint' => 'SELECT `Endpoints`.`id`, `Endpoints`.`hostname` FROM `Endpoints` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Endpoints`.`clientid` ORDER BY 2',
-				'job' => 'SELECT `Jobs`.`id`, IF(CHAR_LENGTH(`Jobs`.`endpoint`) || CHAR_LENGTH(`Jobs`.`destination`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS(\'\',   `Endpoints1`.`hostname`), \'\'), \'-\', IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS(\'\',   `Destinations1`.`type`, \'- \', `Destinations1`.`id`), \'\')), \'\') FROM `Jobs` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Jobs`.`client` LEFT JOIN `Software` as Software1 ON `Software1`.`id`=`Jobs`.`software` LEFT JOIN `Endpoints` as Endpoints1 ON `Endpoints1`.`id`=`Jobs`.`endpoint` LEFT JOIN `Methods` as Methods1 ON `Methods1`.`id`=`Jobs`.`method` LEFT JOIN `Software` as Software2 ON `Software2`.`id`=`Methods1`.`software` LEFT JOIN `Destinations` as Destinations1 ON `Destinations1`.`id`=`Jobs`.`destination` ORDER BY 2',
+				'job' => 'SELECT `Jobs`.`id`, IF(CHAR_LENGTH(`Jobs`.`endpoint`) || CHAR_LENGTH(`Jobs`.`destination`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS(\'\',   `Endpoints1`.`hostname`), \'\'), \'-\', IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS(\'\',   `Destinations1`.`hostname`, \'- \', `Destinations1`.`type`), \'\')), \'\') FROM `Jobs` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Jobs`.`client` LEFT JOIN `Software` as Software1 ON `Software1`.`id`=`Jobs`.`software` LEFT JOIN `Endpoints` as Endpoints1 ON `Endpoints1`.`id`=`Jobs`.`endpoint` LEFT JOIN `Methods` as Methods1 ON `Methods1`.`id`=`Jobs`.`method` LEFT JOIN `Software` as Software2 ON `Software2`.`id`=`Methods1`.`software` LEFT JOIN `Destinations` as Destinations1 ON `Destinations1`.`id`=`Jobs`.`destination` ORDER BY 2',
 			],
 			'Methods' => [
 				'software' => 'SELECT `Software`.`id`, `Software`.`name` FROM `Software` ORDER BY 2',

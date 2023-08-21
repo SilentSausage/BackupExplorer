@@ -9,8 +9,6 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="Endpoints_view.php?filterer_clientid=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="Endpoints_link"><img src="resources/table_icons/dns_setting.png"> Endpoints</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="Endpoints_view.php?filterer_clientid=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_Endpoints_link"><img src="resources/table_icons/dns_setting.png"> Endpoints</a>
 			<input type="hidden" id="Endpoints_hclink" value="Endpoints_view.php?filterer_clientid=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="Jobs_hclink" value="Jobs_view.php?filterer_client=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="Log_hclink" value="Log_view.php?filterer_client=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
@@ -24,15 +22,6 @@
 		<!-- form inputs -->
 		<div class="col-md-8 col-lg-10" id="Clients_dv_form">
 			<fieldset class="form-horizontal">
-
-				<!-- Field: ID -->
-				<div class="form-group Clients-id">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="id">ID</label>
-					<div class="col-lg-9">
-						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
-					</div>
-				</div>
 
 				<!-- Field: Name -->
 				<div class="form-group Clients-name">
