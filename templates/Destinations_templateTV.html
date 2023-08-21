@@ -1,0 +1,11 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the Destinations_init() hook (in hooks/Destinations.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="Destinations-hostname-<%%VALUE(id)%%>" class="Destinations-hostname"><%%SELECT%%><%%VALUE(hostname)%%><%%ENDSELECT%%></td>
+		<td id="Destinations-type-<%%VALUE(id)%%>" class="Destinations-type"><%%SELECT%%><%%VALUE(type)%%><%%ENDSELECT%%></td>
+		<td id="Destinations-client-<%%VALUE(id)%%>" class="Destinations-client"><%%SELECT%%><%%VALUE(client)%%><%%ENDSELECT%%></td>
+		<td id="Destinations-space-<%%VALUE(id)%%>" class="Destinations-space"><%%SELECT%%><%%VALUE(space)%%><%%ENDSELECT%%></td>

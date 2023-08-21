@@ -1,0 +1,12 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the Jobs_init() hook (in hooks/Jobs.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="Jobs-client-<%%VALUE(id)%%>" class="Jobs-client"><%%SELECT%%><%%VALUE(client)%%><%%ENDSELECT%%></td>
+		<td id="Jobs-software-<%%VALUE(id)%%>" class="Jobs-software"><%%SELECT%%><%%VALUE(software)%%><%%ENDSELECT%%></td>
+		<td id="Jobs-endpoint-<%%VALUE(id)%%>" class="Jobs-endpoint"><%%SELECT%%><%%VALUE(endpoint)%%><%%ENDSELECT%%></td>
+		<td id="Jobs-method-<%%VALUE(id)%%>" class="Jobs-method"><%%SELECT%%><%%VALUE(method)%%><%%ENDSELECT%%></td>
+		<td id="Jobs-destination-<%%VALUE(id)%%>" class="Jobs-destination"><%%SELECT%%><%%VALUE(destination)%%><%%ENDSELECT%%></td>

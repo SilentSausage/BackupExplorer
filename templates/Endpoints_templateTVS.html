@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the Endpoints_init() hook (in hooks/Endpoints.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="Endpoints-hostname-<%%VALUE(id)%%>" class="Endpoints-hostname"><%%VALUE(hostname)%%></td>
+		<td id="Endpoints-notes-<%%VALUE(id)%%>" class="Endpoints-notes"><%%VALUE(notes)%%></td>
+		<td id="Endpoints-clientid-<%%VALUE(id)%%>" class="Endpoints-clientid"><%%VALUE(clientid)%%></td>

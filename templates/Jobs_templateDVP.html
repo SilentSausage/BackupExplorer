@@ -1,0 +1,100 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group Jobs-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Client -->
+		<div class="form-group Jobs-client" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Client</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="client<%%RND1%%>"><%%COMBOTEXT(client)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Software -->
+		<div class="form-group Jobs-software" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Software</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="software<%%RND1%%>"><%%COMBOTEXT(software)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Endpoint -->
+		<div class="form-group Jobs-endpoint" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Endpoint</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="endpoint<%%RND1%%>"><%%COMBOTEXT(endpoint)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Method -->
+		<div class="form-group Jobs-method" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Method</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="method<%%RND1%%>"><%%COMBOTEXT(method)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Destination -->
+		<div class="form-group Jobs-destination" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Destination</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="destination<%%RND1%%>"><%%COMBOTEXT(destination)%%></span></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="Jobs-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=Jobs-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'Jobs',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'Jobs-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+
