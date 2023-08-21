@@ -86,10 +86,10 @@
 	$x->DefaultSortField = '4';
 	$x->DefaultSortDirection = 'asc';
 
-	$x->ColWidth = [150, 150, 150, ];
-	$x->ColCaption = ['Hostname', 'Notes', 'Clientid', ];
-	$x->ColFieldName = ['hostname', 'notes', 'clientid', ];
-	$x->ColNumber  = [2, 3, 4, ];
+	$x->ColWidth = [150, 150, ];
+	$x->ColCaption = ['Hostname', 'Clientid', ];
+	$x->ColFieldName = ['hostname', 'clientid', ];
+	$x->ColNumber  = [2, 4, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/Endpoints_templateTV.html';

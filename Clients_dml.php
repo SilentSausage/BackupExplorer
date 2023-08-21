@@ -182,6 +182,18 @@ function Clients_delete($selected_id, $AllowDeleteOfParents = false, $skipChecks
 		return $RetMsg;
 	}
 
+	// delete file stored in the 'logo' field
+	$res = sql("SELECT `logo` FROM `Clients` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+			$thumbDV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_dv.$1', $row[0]);
+			$thumbTV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_tv.$1', $row[0]);
+			@unlink(getUploadDir('') . $thumbTV);
+			@unlink(getUploadDir('') . $thumbDV);
+		}
+	}
+
 	sql("DELETE FROM `Clients` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: Clients_after_delete
@@ -212,9 +224,21 @@ function Clients_update(&$selected_id, &$error_message = '') {
 				createThumbnail($name, getThumbnailSpecs('Clients', 'logo', 'tv'));
 				createThumbnail($name, getThumbnailSpecs('Clients', 'logo', 'dv'));
 			},
+			'removeOnSuccess' => true,
 			'removeOnRequest' => true,
 			'remove' => function($selected_id) {
-				// do nothing: preserve removed files on server.
+				// delete old file from server
+				$oldFile = existing_value('Clients', 'logo', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
+
+				// delete thumbnails
+				preg_match('/^[a-z0-9_]+\.(jpg|jpeg|gif|png|webp)$/i', $oldFile, $m);
+				$thumbDV = str_replace(".{$m[1]}ffffgggg", "_dv.{$m[1]}", $oldFile . 'ffffgggg');
+				$thumbTV = str_replace(".{$m[1]}ffffgggg", "_tv.{$m[1]}", $oldFile . 'ffffgggg');
+				@unlink(getUploadDir('') . $thumbTV);
+				@unlink(getUploadDir('') . $thumbDV);
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if($fileRemoved) return '';

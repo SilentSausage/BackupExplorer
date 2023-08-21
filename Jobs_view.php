@@ -23,7 +23,7 @@
 		"IF(    CHAR_LENGTH(`Software1`.`name`), CONCAT_WS('',   `Software1`.`name`), '') /* Software */" => "software",
 		"IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS('',   `Endpoints1`.`hostname`), '') /* Endpoint */" => "endpoint",
 		"IF(    CHAR_LENGTH(`Methods1`.`name`) || CHAR_LENGTH(`Software2`.`name`), CONCAT_WS('',   `Methods1`.`name`, ' - ', `Software2`.`name`), '') /* Method */" => "method",
-		"IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS('',   `Destinations1`.`type`, '- ', `Destinations1`.`id`), '') /* Destination */" => "destination",
+		"IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS('',   `Destinations1`.`hostname`, '- ', `Destinations1`.`type`), '') /* Destination */" => "destination",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -42,7 +42,7 @@
 		"IF(    CHAR_LENGTH(`Software1`.`name`), CONCAT_WS('',   `Software1`.`name`), '') /* Software */" => "software",
 		"IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS('',   `Endpoints1`.`hostname`), '') /* Endpoint */" => "endpoint",
 		"IF(    CHAR_LENGTH(`Methods1`.`name`) || CHAR_LENGTH(`Software2`.`name`), CONCAT_WS('',   `Methods1`.`name`, ' - ', `Software2`.`name`), '') /* Method */" => "method",
-		"IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS('',   `Destinations1`.`type`, '- ', `Destinations1`.`id`), '') /* Destination */" => "destination",
+		"IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS('',   `Destinations1`.`hostname`, '- ', `Destinations1`.`type`), '') /* Destination */" => "destination",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -51,7 +51,7 @@
 		"IF(    CHAR_LENGTH(`Software1`.`name`), CONCAT_WS('',   `Software1`.`name`), '') /* Software */" => "Software",
 		"IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS('',   `Endpoints1`.`hostname`), '') /* Endpoint */" => "Endpoint",
 		"IF(    CHAR_LENGTH(`Methods1`.`name`) || CHAR_LENGTH(`Software2`.`name`), CONCAT_WS('',   `Methods1`.`name`, ' - ', `Software2`.`name`), '') /* Method */" => "Method",
-		"IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS('',   `Destinations1`.`type`, '- ', `Destinations1`.`id`), '') /* Destination */" => "Destination",
+		"IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS('',   `Destinations1`.`hostname`, '- ', `Destinations1`.`type`), '') /* Destination */" => "Destination",
 	];
 
 	// Fields that can be quick searched
@@ -61,7 +61,7 @@
 		"IF(    CHAR_LENGTH(`Software1`.`name`), CONCAT_WS('',   `Software1`.`name`), '') /* Software */" => "software",
 		"IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS('',   `Endpoints1`.`hostname`), '') /* Endpoint */" => "endpoint",
 		"IF(    CHAR_LENGTH(`Methods1`.`name`) || CHAR_LENGTH(`Software2`.`name`), CONCAT_WS('',   `Methods1`.`name`, ' - ', `Software2`.`name`), '') /* Method */" => "method",
-		"IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS('',   `Destinations1`.`type`, '- ', `Destinations1`.`id`), '') /* Destination */" => "destination",
+		"IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS('',   `Destinations1`.`hostname`, '- ', `Destinations1`.`type`), '') /* Destination */" => "destination",
 	];
 
 	// Lookup fields that can be used as filterers

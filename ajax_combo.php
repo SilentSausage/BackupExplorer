@@ -95,7 +95,7 @@
 			'destination' => [
 				'parent_table' => 'Destinations',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`Destinations`.`type`) || CHAR_LENGTH(`Destinations`.`id`), CONCAT_WS(\'\', `Destinations`.`type`, \'- \', `Destinations`.`id`), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`Destinations`.`hostname`) || CHAR_LENGTH(`Destinations`.`type`), CONCAT_WS(\'\', `Destinations`.`hostname`, \'- \', `Destinations`.`type`), \'\')',
 				'parent_from' => '`Destinations` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Destinations`.`client` ',
 				'filterers' => ['client' => 'client'],
 				'custom_query' => '',
@@ -130,7 +130,7 @@
 			'job' => [
 				'parent_table' => 'Jobs',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`Jobs`.`endpoint`) || CHAR_LENGTH(`Jobs`.`destination`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS(\'\',   `Endpoints1`.`hostname`), \'\'), \'-\', IF(    CHAR_LENGTH(`Destinations1`.`type`) || CHAR_LENGTH(`Destinations1`.`id`), CONCAT_WS(\'\',   `Destinations1`.`type`, \'- \', `Destinations1`.`id`), \'\')), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`Jobs`.`endpoint`) || CHAR_LENGTH(`Jobs`.`destination`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`Endpoints1`.`hostname`), CONCAT_WS(\'\',   `Endpoints1`.`hostname`), \'\'), \'-\', IF(    CHAR_LENGTH(`Destinations1`.`hostname`) || CHAR_LENGTH(`Destinations1`.`type`), CONCAT_WS(\'\',   `Destinations1`.`hostname`, \'- \', `Destinations1`.`type`), \'\')), \'\')',
 				'parent_from' => '`Jobs` LEFT JOIN `Clients` as Clients1 ON `Clients1`.`id`=`Jobs`.`client` LEFT JOIN `Software` as Software1 ON `Software1`.`id`=`Jobs`.`software` LEFT JOIN `Endpoints` as Endpoints1 ON `Endpoints1`.`id`=`Jobs`.`endpoint` LEFT JOIN `Methods` as Methods1 ON `Methods1`.`id`=`Jobs`.`method` LEFT JOIN `Software` as Software2 ON `Software2`.`id`=`Methods1`.`software` LEFT JOIN `Destinations` as Destinations1 ON `Destinations1`.`id`=`Jobs`.`destination` ',
 				'filterers' => ['client' => 'client', 'endpoint' => 'endpoint'],
 				'custom_query' => '',

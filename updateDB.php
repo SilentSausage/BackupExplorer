@@ -62,9 +62,7 @@
 				`results` TEXT NULL,
 				`screenshot` VARCHAR(40) NULL,
 				`notes` TEXT NULL
-			) CHARSET utf8mb4", [
-				" ALTER TABLE `Log` CHANGE `date` `date` DATE NULL ",
-			]
+			) CHARSET utf8mb4"
 		);
 		setupIndexes('Log', ['client','endpoint','job',]);
 
@@ -99,9 +97,7 @@
 				`type` VARCHAR(40) NULL,
 				`client` INT UNSIGNED NULL,
 				`space` VARCHAR(40) NULL
-			) CHARSET utf8mb4", [
-				"ALTER TABLE `Destinations` DROP `endpoint`",
-			]
+			) CHARSET utf8mb4"
 		);
 		setupIndexes('Destinations', ['client',]);
 
